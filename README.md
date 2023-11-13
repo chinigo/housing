@@ -50,32 +50,50 @@ Thank you for your consideration.
 
 # Activities
 
-## Shop
+## Projects
+
 - Produce furniture for myself and the home.
 - Build computers and other electronics projects.
 
 ## Cooking & Eating
+
 - Cook daily meals for myself.
 - Host dinner a few times a month for 4-6 people.
 - Host Thanksgiving or Christmas dinner for up to 10 people.
 
 ## Entertainment
+
 - Watch television/movies/video games in amazing quality.
   - Play audio at arbitrary volume without disturbing neighbors.
 - Listen to music throughout the house.
 
-## Garage
-- Permanently store 1 or 2 cars.
+## Transportation
 
-## Bathroom
+- Store 2 cars.
+
+## Ablutions
+
 - Shower daily.
 - Take long, soaking bath a few times a week.
 
-
-## Bedroom
-
-
 # Requirements
+
+## Site
+
+- Outside a 500-year flood zone.
+- Low risk of wildfire (or mitigation against it with, e.g., firebreaks).
+- Some element of natural beauty — a view of water, rolling hills, a valley, etc.
+- Has some topography to it, a little vertical elevation.
+- Access to reliable water and waste systems.
+  - Municipal water and sewage would be ideal, but septic or well water would be acceptable if the site has other
+    aspects to recommend it.
+
+## Heating/cooling
+
+- Cool entire house to 70°F during the hottest day of the year.
+- Heat entire house to 65°F during the coldest day of the year.
+- Relatively fine-grained HVAC zones. Would like to be able to selectively heat/cool individual rooms to optimize energy
+  consumption for my daily living pattern.
 
 ## Energy
 
@@ -84,8 +102,8 @@ Thank you for your consideration.
   - Figure out minimum "emergency" load to support off-grid.
     - This is necessarily < 1 of the baseline and would be determined by the minimum acceptable ΔT in an emergency
       (assuming HVAC is the thing that consumes the most energy.)
-  - Up to that minimum emergency load, I'm content to *lose money* producing energy relative to buying it. (Lose
-    *some* money, that is, within reason.)
+  - Up to that minimum emergency load, I'm content to *lose money* (within reason) producing energy relative to buying
+    it.
   - Between emergency and baseline, I'd like to produce as much energy as possible while remaining *cost-neutral*.
   - Willing to *overproduce* above the baseline if producing energy is *revenue-positive*.
     - [OPEN QUESTION] Assuming the electric company up here buys back surplus energy from grid-tied systems?
@@ -97,3 +115,8 @@ Thank you for your consideration.
 
 - Is it pragmatic to go full electric? Electric appliances make sense, but what about heating?
 - Does the electric utility buy back surplus energy from grid-tied systems?
+
+# Resources
+
+- FEMA National Risk Index: https://hazards.fema.gov/nri/data-resources
+- FEMA fire risk map: https://www.arcgis.com/home/item.html?id=9274dfe5318540d7a09f0117c0be0730

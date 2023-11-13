@@ -1,13 +1,12 @@
 all: run_airflow
 
-initialize: install_python install_airflow setup_housing_database setup_airflow_database
+initialize: install_python upgrade_pip install_airflow setup_housing_database setup_airflow_database
 
 purge:
 	rm -rf .direnv airflow
 
 install_python:
 	asdf install python
-	pip install --upgrade pip
 
 install_airflow:
 	pip install --quiet --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_MINOR_VERSION}.txt" "apache-airflow[postgres]==${AIRFLOW_VERSION}"
@@ -24,3 +23,6 @@ setup_housing_database:
 
 setup_airflow_database:
 	./scripts/setup_airflow_database.sh
+
+upgrade_pip:
+	pip install --upgrade pip
