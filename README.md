@@ -10,11 +10,10 @@ are infinite ways to fail.
 I'm an engineer by training and inclination. My education was as a mechanical engineer, where I learned to respect the
 constraints imposed by physical and fiscal reality. My profession is as a software engineer, where I've learned that no
 plan survives implementation unmodified. And my father, for what it's worth, was a tradesman and homebuilder from whom I
-learned the value of the practical experience and institutional knowledge of the people implementing that plan.
+learned the value of practical experience.
 
-I am no expert. I've never done this before. I'm a babe in the woods. Therefore, nothing in this document is set in
-stone. I look to you, as the expert, to set me straight and help me to refine this plan, both here at the outset and
-going forward as we implement it.
+I am no expert. I'm a babe in the woods. So nothing in this document is set in stone. I look to you, as the expert, to
+set me straight and help me to refine this plan, here at the outset and iteratively as we execute it.
 
 All of which is to say, let's plan for change but let's get the big things Right.
 
@@ -94,6 +93,17 @@ Thank you for your consideration.
 - Heat entire house to 65°F during the coldest day of the year.
 - Relatively fine-grained HVAC zones. Would like to be able to selectively heat/cool individual rooms to optimize energy
   consumption for my daily living pattern.
+- Meet or
+  exceed [BSC's recommended R-values for Climate Zone 6](https://buildingscience.com/sites/default/files/migrate/pdf/BA-1005_High%20R-Value_Walls_Case_Study.pdf):
+
+    | Element                   | R-value |
+    |:--------------------------|:-------:|
+    | Slab                      | 10      |
+    | Basement walls            | 20      |
+    | Exposed floor             | 40      | 
+    | Walls                     | 40      |
+    | Compact or cathedral roof | 60      |
+    | Vented Attic              | 70      |
 
 ## Energy
 
@@ -106,7 +116,7 @@ Thank you for your consideration.
     it.
   - Between emergency and baseline, I'd like to produce as much energy as possible while remaining *cost-neutral*.
   - Willing to *overproduce* above the baseline if producing energy is *revenue-positive*.
-    - [OPEN QUESTION] Assuming the electric company up here buys back surplus energy from grid-tied systems?
+    - ~~[OPEN QUESTION] Assuming the electric company up here buys back surplus energy from grid-tied systems?~~
 
 # Aesthetics
 
@@ -114,7 +124,11 @@ Thank you for your consideration.
 # Open Questions
 
 - Is it pragmatic to go full electric? Electric appliances make sense, but what about heating?
-- Does the electric utility buy back surplus energy from grid-tied systems?
+- ~~Does the electric utility buy back surplus energy from grid-tied systems?~~
+  - National
+    Grid [will convert negative usage to cash](https://www9.nationalgridus.com/non_html/Net%20Metering%20FAQ.pdf).
+  - Con Edison
+    only [provides statement credits](https://www.coned.com/en/save-money/using-private-generation-energy-sources/solar-energy/solar-energy-installation-faq).
 
 # Resources
 
