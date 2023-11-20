@@ -1,4 +1,6 @@
-# Cover letter
+# House
+
+## Cover letter
 
 Building a home is the riskiest thing I ever intend to do and I intend to do it only once.
 
@@ -23,8 +25,7 @@ are my priorities.
 
 Thank you for your consideration.
 
-
-# Goals
+## Goals
 
 - House myself and one other adult into our old age.
 - High build quality.
@@ -38,7 +39,7 @@ Thank you for your consideration.
 - Take advantage of the energy resources are available to the site.
   - Most probably this means solar, but also micro-hydro or geothermal if practical.
 
-# Anti-goals
+## Anti-goals
 
 - "McMansion."
   - Square footage for square footage's sake.
@@ -47,47 +48,47 @@ Thank you for your consideration.
   - I want an energy efficient home, but I don't care about hitting the arbitrary marks required for, e.g., Phius or
     passive house certification.
 
-# Activities
+## Activities
 
-## Projects
+### Projects
 
 - Produce furniture for myself and the home.
 - Build computers and other electronics projects.
 
-## Cooking & Eating
+### Cooking & Eating
 
 - Cook daily meals for myself.
 - Host dinner a few times a month for 4-6 people.
 - Host Thanksgiving or Christmas dinner for up to 10 people.
 
-## Entertainment
+### Entertainment
 
 - Watch television/movies/video games in amazing quality.
   - Play audio at arbitrary volume without disturbing neighbors.
 - Listen to music throughout the house.
 
-## Transportation
+### Transportation
 
 - Store 2 cars.
 
-## Ablutions
+### Ablutions
 
 - Shower daily.
 - Take long, soaking bath a few times a week.
 
-# Requirements
+## Requirements
 
-## Site
+### Site
 
 - Outside a 500-year flood zone.
 - Low risk of wildfire (or mitigation against it with, e.g., firebreaks).
 - Some element of natural beauty — a view of water, rolling hills, a valley, etc.
 - Has some topography to it, a little vertical elevation.
 - Access to reliable water and waste systems.
-  - Municipal water and sewage would be ideal, but septic or well water would be acceptable if the site has other
-    aspects to recommend it.
 
-## Heating/cooling
+### Infrastructure
+
+#### Heating/cooling
 
 - Cool entire house to 70°F during the hottest day of the year.
 - Heat entire house to 65°F during the coldest day of the year.
@@ -100,12 +101,12 @@ Thank you for your consideration.
     |:--------------------------|:-------:|
     | Slab                      | 10      |
     | Basement walls            | 20      |
-    | Exposed floor             | 40      | 
+    | Exposed floor             | 40      |
     | Walls                     | 40      |
     | Compact or cathedral roof | 60      |
     | Vented Attic              | 70      |
 
-## Energy
+#### Energy
 
 - Sizing:
   - Figure out the max baseline electrical load. (Given the climate, that'll likely be in winter.)
@@ -118,10 +119,73 @@ Thank you for your consideration.
   - Willing to *overproduce* above the baseline if producing energy is *revenue-positive*.
     - ~~[OPEN QUESTION] Assuming the electric company up here buys back surplus energy from grid-tied systems?~~
 
-# Aesthetics
+#### Water
 
+- Supply:
+  - Free of microbes.
+  - Softened.
+  - Municipal water would be ideal.
+- Temperature control:
+  - Hot water available within a few seconds (< 10s) of starting tap.
+  - Indefinite amount of hot water.
+  - Tankless heater with recirculation?
+- Potable water taps (at least) are filtered.
 
-# Open Questions
+#### Sewage
+
+- Municipal sewage would be ideal.
+- Handle waste for 2 adults.
+
+### Rooms
+
+#### Kitchen
+
+#### Master Bathroom
+
+- Connected to master bedroom.
+  - Not necessarily exclusively accessed via bedroom. Could be open to the rest of the house.
+- Super resistent against mold and humidity.
+- Floor:
+  - Water resistant.
+    - Neither the floor material nor the subfloor should be damaged by the occasional puddle.
+  - Easy to clean.
+    - Floor drain?
+  - Slip resistant.
+  - Tile? Slate?
+- Wall-mounted toilet. No gross wax seal.
+  - Can nevertheless be serviced without ripping open the wall. Door or removable panel?
+  - Electric bidet seat.
+- Low-flow urinal.
+  - Can be used at the same time as the toilet. (i.e. not right next to the toilet at the height of a seated person's head.)
+- Shower and/or tub:
+  - Can make it super steamy without long-term damage.
+    - Glass door instead of curtain, so shower stall can be isolated from rest of room?
+    - Exhaust fan inside shower stall?
+    - Tile all the way up the wall and on the ceiling.
+  - Can take long, soaking baths:
+    - Either a dedicated tub or a shower/tub combo.
+    - Can maintain water temperature indefinitely.
+    - Whirlpool tub?
+  - Can easily rinse down walls after each shower.
+    - Handheld shower head? Either alone or with other fixtures.
+  - Good lighting.
+    - Fixture(s) in shower ceiling?
+
+#### Bedroom
+
+#### Office
+
+#### Guest Bedroom
+
+- Doesn't necessarily need to be a discrete room. Could be an alternate usage mode of the office.
+
+#### Living Room
+
+#### Outside
+
+## Aesthetics
+
+## Open Questions
 
 - Is it pragmatic to go full electric? Electric appliances make sense, but what about heating?
 - ~~Does the electric utility buy back surplus energy from grid-tied systems?~~
@@ -130,7 +194,7 @@ Thank you for your consideration.
   - Con Edison
     only [provides statement credits](https://www.coned.com/en/save-money/using-private-generation-energy-sources/solar-energy/solar-energy-installation-faq).
 
-# Resources
+## Resources
 
-- FEMA National Risk Index: https://hazards.fema.gov/nri/data-resources
-- FEMA fire risk map: https://www.arcgis.com/home/item.html?id=9274dfe5318540d7a09f0117c0be0730
+- [FEMA National Risk Index](https://hazards.fema.gov/nri/data-resources)
+- [FEMA fire risk map](https://www.arcgis.com/home/item.html?id=9274dfe5318540d7a09f0117c0be0730)
