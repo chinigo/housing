@@ -9,11 +9,6 @@ not just me but also the dozens of professionals I'll need to hire. If successfu
 lifetime of comfort and security for me and my family — and a remunerative project for those professionals. But there
 are infinite ways to fail.
 
-I'm an engineer by training and inclination. My education was as a mechanical engineer, where I learned to respect the
-constraints imposed by physical and fiscal reality. My profession is as a software engineer, where I've learned that no
-plan survives implementation unmodified. And my father, for what it's worth, was a tradesman and homebuilder from whom I
-learned the value of practical experience.
-
 I am no expert, so nothing in this document is set in stone. I look to you, as the expert, to set me straight and help
 me to refine this plan, here at the outset and iteratively as we execute it.
 
