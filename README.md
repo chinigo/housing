@@ -9,8 +9,9 @@ not just me but the dozens of professionals I'll need to hire. If successful, th
 lifetime of comfort and security for me and my family and a remunerative project for the professionals. But there are
 infinite ways to fail.
 
-I'm no expert, so nothing in this document is set in stone. I look to you, as the expert, to set me straight and help me
-to refine this plan, here at the outset and iteratively as we execute it.
+I'm no expert, so nothing in this document is set in stone. Its purpose is to articulate my priorities and goals, not to
+define firm requirements. I look to you, the expert, to set me straight and help me to refine this plan, here at the
+outset and iteratively as we execute it.
 
 All of which is to say, I'd like to plan for change but get the big things Right.
 
@@ -53,7 +54,7 @@ Thank you for your consideration.
 
 ## Anti-goals
 
-_(i.e. outcomes I'd like to avoid, but that might appear at first glance to be goals.)_
+*(i.e. outcomes I'd like to avoid, but that might appear at first glance to be goals.)*
 
 - "McMansion."
   - Square footage for square footage's sake.
@@ -67,6 +68,9 @@ _(i.e. outcomes I'd like to avoid, but that might appear at first glance to be g
 
 - Some element of natural beauty — a view of water, rolling hills, a valley, etc.
 - Has some topography to it, a little vertical elevation to build into.
+- Within a 15-minute drive of emergency services (e.g. ambulance, fire).
+- Within a 30-minute drive of a supermarket.
+- Within a 90-minute drive to Glens Falls.
 - Access to reliable water and waste systems.
 - Outside a 500-year flood zone.
 - Low risk of wildfire (or mitigation against it with, e.g., a firebreak).
@@ -190,7 +194,7 @@ consumption for my daily living pattern.
 - Produce furniture for myself and the home.
 - Build computers and other electronics projects.
 
-#### Requirements
+#### Functional Requirements
 
 - Conditioned space so it can be used year-round.
 - Can easily bring 4' x 8' sheet goods into the space.
@@ -205,7 +209,7 @@ consumption for my daily living pattern.
 - Host dinner a few times a month for 4-6 people.
 - Host Thanksgiving or Christmas dinner for up to 10 people.
 
-#### Requirements
+#### Functional Requirements
 
 - Easy to clean.
   - Can mop the floor aggressively - soak and scrub.
@@ -260,7 +264,7 @@ consumption for my daily living pattern.
 - Watch television/movies/video games in amazing quality.
   - Play audio at arbitrary volume without disturbing neighbors.
 
-#### Requirements
+#### Functional Requirements
 
 ### Garage
 
@@ -269,7 +273,7 @@ consumption for my daily living pattern.
 - Store 2 cars.
 - Can be upgraded to charge an electric vehicle.
 
-#### Requirements
+#### Functional Requirements
 
 ### Master Bathroom
 
@@ -279,7 +283,7 @@ consumption for my daily living pattern.
 - Take long, soaking bath a few times a week.
 - Stumble in in the middle of the night to urinate.
 
-#### Requirements
+#### Functional Requirements
 
 - Connected to master bedroom.
   - Not necessarily exclusively accessed via bedroom. Could be open to the rest of the house.
@@ -319,17 +323,59 @@ consumption for my daily living pattern.
 
 ### Master Bedroom
 
-#### Office
+#### Activities
 
-#### Guest Bedroom
+- *TBD*
 
-- Doesn't necessarily need to be a discrete room. Could be an alternate usage mode of the office.
+#### Functional Requirements
 
-#### Living Room
+- *TBD*
 
-#### Outside
+### Office
+
+#### Activities
+
+- *TBD*
+
+#### Functional Requirements
+
+- *TBD*
+
+### Guest Bedroom
+
+#### Activities
+
+- *TBD*
+
+- n.b. Doesn't necessarily need to be a discrete room. Could be an alternate usage mode of the office.
+
+#### Functional Requirements
+
+- *TBD*
+
+### Living Room
+
+#### Activities
+
+- *TBD*
+
+#### Functional Requirements
+
+- *TBD*
+
+### Outside
+
+#### Activities
+
+- *TBD*
+
+#### Functional Requirements
+
+- *TBD*
 
 ## Aesthetics
+
+- *TBD*
 
 ## Open Questions
 
@@ -342,5 +388,6 @@ consumption for my daily living pattern.
 
 ## Resources
 
+- [Heat map of places that looked cool](https://maps.app.goo.gl/wtB1zKbsDewueXuY6)
 - [FEMA National Risk Index](https://hazards.fema.gov/nri/data-resources)
 - [FEMA fire risk map](https://www.arcgis.com/home/item.html?id=9274dfe5318540d7a09f0117c0be0730)
