@@ -5,18 +5,26 @@
 Building a home is the riskiest thing I ever intend to do and I intend to do it only once.
 
 It will require an enormous investment of time, money, sweat, and tears (but hopefully only trace amounts of blood) from
-not just me but also the dozens of professionals I'll need to hire. If successful, the yield of that investment is a
-lifetime of comfort and security for me and my family — and a remunerative project for those professionals. But there
-are infinite ways to fail.
+not just me but the dozens of professionals I'll need to hire. If successful, the yield of that investment is a
+lifetime of comfort and security for me and my family and a remunerative project for the professionals. But there are
+infinite ways to fail.
 
-I am no expert, so nothing in this document is set in stone. I look to you, as the expert, to set me straight and help
-me to refine this plan, here at the outset and iteratively as we execute it.
+I'm no expert, so nothing in this document is set in stone. I look to you, as the expert, to set me straight and help me
+to refine this plan, here at the outset and iteratively as we execute it.
 
-All of which is to say, let's plan for change but let's get the big things Right.
+All of which is to say, I'd like to plan for change but get the big things Right.
 
-The big things are the ones that are hardest/most expensive to change. In "How Buildings Learn," Stewart Brand presents
-this list: site, structure, skin (i.e. building envelope), services, space plan, stuff. Those elements — in that order —
-are my priorities.
+The big things are the ones that are hardest/most expensive to change. I'd like to crib this list from "How Buildings
+Learn," by Stewart Brand:
+
+1. Site
+1. Structure
+1. Skin (i.e. building envelope)
+1. Services
+1. Space plan
+1. Stuff
+
+Those elements — in that order — are my priorities.
 
 Thank you for your consideration.
 
@@ -45,6 +53,8 @@ Thank you for your consideration.
 
 ## Anti-goals
 
+_(i.e. outcomes I'd like to avoid, but that might appear at first glance to be goals.)_
+
 - "McMansion."
   - Square footage for square footage's sake.
   - Attractive but impractical features.
@@ -53,27 +63,36 @@ Thank you for your consideration.
   - I want an energy efficient home, but I don't care about hitting the arbitrary marks required for, e.g., Phius or
     passive house certification.
 
-## Requirements
+## Site
 
-### Site
-
+- Some element of natural beauty — a view of water, rolling hills, a valley, etc.
+- Has some topography to it, a little vertical elevation to build into.
+- Access to reliable water and waste systems.
 - Outside a 500-year flood zone.
 - Low risk of wildfire (or mitigation against it with, e.g., a firebreak).
-- Some element of natural beauty — a view of water, rolling hills, a valley, etc.
-- Has some topography to it, a little vertical elevation.
-- Access to reliable water and waste systems.
 
-### Infrastructure & Mechanical Systems
+## Structure
 
-#### Heating/cooling
+- Simple roofline.
+  - No dormers, less opportunity for leaks.
+  - Maybe a simple knee?
+- I like the idea of building into a hill where, instead of a basement, the first story is a half-buried garage & shop.
+- Three stories
+  - First level: Finished basement/garage, half-buried into a hill
+  - Second level: Main living area
+  - Third level: Bedrooms
 
-- Cool entire house to 70°F during the hottest day of the year.
+## Skin (Building Envelope)
 
-- Heat entire house to 65°F during the coldest day of the year.
-
-- Relatively fine-grained HVAC zones. Would like to be able to selectively heat/cool individual rooms to optimize energy
-consumption for my daily living pattern.
-
+- Built with current best practices for:
+  - Vapor barrier
+  - Insect barrier
+  - Airtightness
+- Foundation:
+  - Insulated
+  - Waterproof
+  - Insect barrier
+- Triple-paned windows
 - Meet or exceed [BSC's recommended R-values for Climate Zone
   6](https://buildingscience.com/sites/default/files/migrate/pdf/BA-1005_High%20R-Value_Walls_Case_Study.pdf):
 
@@ -86,7 +105,18 @@ consumption for my daily living pattern.
    | Compact or cathedral roof | 60      |
    | Vented Attic              | 70      |
 
-#### Energy
+## Services
+
+### Heating/cooling
+
+- Cool entire house to 70°F during the hottest day of the year.
+
+- Heat entire house to 65°F during the coldest day of the year.
+
+- Relatively fine-grained HVAC zones. Would like to be able to selectively heat/cool individual rooms to optimize energy
+consumption for my daily living pattern.
+
+### Energy
 
 - Sizing:
   - Figure out the max baseline electrical load. (Given the climate, that'll likely be in winter.)
@@ -99,7 +129,7 @@ consumption for my daily living pattern.
   - Willing to *overproduce* above the baseline if producing energy is *revenue-positive*.
 - Practicality of a [smart electrical panel](https://www.span.io/)?
 
-#### Water
+### Water
 
 - Supply:
   - Free of microbes.
@@ -128,12 +158,12 @@ consumption for my daily living pattern.
   - Manifold to easily shut off specific branches? Worth the trouble? Compatible with recirculation loop?
   - Copper vs PEX?
 
-#### Waste
+### Waste
 
 - Municipal sewage would be ideal.
 - Handle waste for 2 adults.
 
-#### Data and Home Automation
+### Data and Home Automation
 
 - Can listen to music throughout the house.
   - Can direct audio from any connected source to any speaker zone.
@@ -151,31 +181,31 @@ consumption for my daily living pattern.
     unit](https://www.rigidhvac.com/store/products/large-power-chiller-kvb150z) in the future to water-cool computer
     components.
 
-### Spaces
+## Space Plan
 
-#### Shop
+### Shop
 
-##### Activities
+#### Activities
 
 - Produce furniture for myself and the home.
 - Build computers and other electronics projects.
 
-##### Requirements
+#### Requirements
 
 - Conditioned space so it can be used year-round.
 - Can easily bring 4' x 8' sheet goods into the space.
   - French doors leading into garage?
 - Finished, sealed cement floor.
 
-#### Kitchen & Dining
+### Kitchen & Dining
 
-##### Activities
+#### Activities
 
 - Cook daily meals for myself.
 - Host dinner a few times a month for 4-6 people.
 - Host Thanksgiving or Christmas dinner for up to 10 people.
 
-##### Requirements
+#### Requirements
 
 - Easy to clean.
   - Can mop the floor aggressively - soak and scrub.
@@ -222,36 +252,34 @@ consumption for my daily living pattern.
   - Cabinet style, side-by-side with freezer.
 - Freezer
   - Cabinet style, side-by-side with refrigerator.
-- Dishwasher
-  - 
 
-#### Living room/Entertainment center
+### Living room/Entertainment center
 
-##### Activities
+#### Activities
 
 - Watch television/movies/video games in amazing quality.
   - Play audio at arbitrary volume without disturbing neighbors.
 
-##### Requirements
+#### Requirements
 
-#### Garage
+### Garage
 
-##### Activities
+#### Activities
 
 - Store 2 cars.
 - Can be upgraded to charge an electric vehicle.
 
-##### Requirements
+#### Requirements
 
-#### Master Bathroom
+### Master Bathroom
 
-##### Activities
+#### Activities
 
 - Shower daily.
 - Take long, soaking bath a few times a week.
 - Stumble in in the middle of the night to urinate.
 
-##### Requirements
+#### Requirements
 
 - Connected to master bedroom.
   - Not necessarily exclusively accessed via bedroom. Could be open to the rest of the house.
@@ -289,7 +317,7 @@ consumption for my daily living pattern.
   - High-intensity, dimmable, lighting near vanity for easier grooming.
   - Integrated, low-intensity, motion-activated night lights to illuminate the toilet, urinal, and sink areas.
 
-#### Master Bedroom
+### Master Bedroom
 
 #### Office
 
