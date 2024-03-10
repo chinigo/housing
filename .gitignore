@@ -1,3 +1,4 @@
-.prefect
-data
 *.pyc
+/.prefect
+/data/*
+!/data/local

@@ -6,7 +6,10 @@ from prefect import get_run_logger, runtime
 from prefect_sqlalchemy import AsyncDriver, ConnectionComponents, SqlAlchemyConnector
 
 from housing import data_dir
-from housing.block import CensusLocalFileSystem, GazetteerFTP, ReferenceFTP, TigerFTP
+from housing.block.census_local_filesystem import CensusLocalFileSystem
+from housing.block.gazetteer_ftp import GazetteerFTP
+from housing.block.reference_ftp import ReferenceFTP
+from housing.block.tiger_ftp import TigerFTP
 
 T = TypeVar('T')
 
@@ -71,7 +74,7 @@ class Registry:
     async def local_data(cls) -> CensusLocalFileSystem:
         return await cls._load_or_create_block(
             CensusLocalFileSystem(basepath=str(data_dir.joinpath('local'))),
-            f'local_data',
+            f'local-data',
         )
 
     @classmethod
