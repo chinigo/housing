@@ -1,30 +1,18 @@
-from logging import Logger
-from typing import Type, TypeVar
+from typing import TypeVar
+
+from prefect import get_run_logger
 
 from housing.block.metadata_aware_filesystem import MetadataAwareFileSystem
-from housing.model.census_data_file import CensusDataFile
+from housing.task.helper import CensusDataFile
 
 T = TypeVar('T', bound='FileSyncer')
 
 
 class FileSyncer:
-    def __init__(self, source_fs: MetadataAwareFileSystem, destination_fs: MetadataAwareFileSystem, logger: Logger):
+    def __init__(self, source_fs: MetadataAwareFileSystem, destination_fs: MetadataAwareFileSystem):
         self.source_fs = source_fs
         self.destination_fs = destination_fs
-        self._logger = logger
-
-    @classmethod
-    async def factory(
-            cls: Type[T],
-            source_block: tuple[Type[MetadataAwareFileSystem], str],
-            destination_block: tuple[Type[MetadataAwareFileSystem], str],
-            logger: Logger
-    ) -> T:
-        return FileSyncer(
-            await source_block[0].load(source_block[1]),
-            await destination_block[0].load(destination_block[1]),
-            logger,
-        )
+        self._logger = get_run_logger()
 
     async def sync(self, *path_segments: str):
         source_file = CensusDataFile.from_block(self.source_fs, *path_segments)

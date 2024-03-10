@@ -10,7 +10,7 @@ dev: $(MAKE) start_prefect serve_deployments open_prefect_ui
 initialize: .envrc setup_python setup_databases
 
 .PHONY: purge
-purge: purge_python purge_databases
+purge: purge_python purge_prefect purge_databases
 
 # Environment
 .envrc:
@@ -19,7 +19,7 @@ purge: purge_python purge_databases
 
 # Databases
 .PHONY: setup_databases
-setup_databases: create_housing_database create_prefect_database setup_prefect_database
+setup_databases: create_prefect_database setup_prefect_database create_housing_database migrate_housing_database
 
 .PHONY: purge_databases
 purge_databases: purge_housing_database purge_prefect_database
@@ -32,6 +32,10 @@ create_housing_database:
 .PHONY: create_prefect_database
 create_prefect_database:
 	_db_database=${PREFECT_DB_DATABASE} _db_host=${PREFECT_DB_HOST} _db_password=${PREFECT_DB_PASSWORD} _db_port=${PREFECT_DB_PORT} _db_username=${PREFECT_DB_USERNAME} ./scripts/create_database.sh
+
+.PHONY: migrate_housing_database
+migrate_housing_database:
+	alembic upgrade head
 
 .PHONY: purge_housing_database
 purge_housing_database:
@@ -50,6 +54,10 @@ setup_prefect_database:
 .PHONY: open_prefect_ui
 open_prefect_ui:
 	sleep 2 && open "http://${PREFECT_SERVER_API_HOST}:${PREFECT_SERVER_API_PORT}"
+
+.PHONY: purge_prefect
+purge_prefect:
+	rm -rf ./.prefect
 
 .PHONY: serve_deployments
 serve_deployments:
@@ -78,7 +86,8 @@ install_python:
 
 .PHONY: purge_python
 purge_python:
-	rm -rf .venv
+	rm -rf .venv .pytest_cache
+	find ./housing ./migrations -name '*.pyc' -print0 | xargs -0 rm
 
 .PHONY: upgrade_pip
 upgrade_pip:
