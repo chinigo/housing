@@ -14,10 +14,7 @@ INSERT_CHUNK_SIZE = 1_000
 
 
 @task(name='Upsert Gazetteer county subdivisions data', persist_result=True)
-async def upsert_county_subdivisions(
-        subdivisions_file: CensusDataFile,
-        gazetteer_year: int,
-):
+async def upsert_county_subdivisions(subdivisions_file: CensusDataFile, gazetteer_year: int):
     logger = get_run_logger()
     source = await Registry().gazetteer_local
     housing_db = await Registry().housing_database

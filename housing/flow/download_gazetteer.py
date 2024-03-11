@@ -7,5 +7,5 @@ from housing.task.gazetteer import *
 async def download_gazetteer(gazetteer_year: int):
     await upsert_functional_statuses()
     await upsert_states(await download_states())
-    await upsert_counties(await download_counties(gazetteer_year))
-    await upsert_county_subdivisions(await download_county_subdivisions(gazetteer_year))
+    await upsert_counties(await download_counties(gazetteer_year), gazetteer_year)
+    await upsert_county_subdivisions(await download_county_subdivisions(gazetteer_year), gazetteer_year)
