@@ -1,10 +1,10 @@
-from os import environ
-from typing import cast, Any, Optional, Type, TypeVar
-
-from async_property import async_property
 from logging import Logger, LoggerAdapter
-from prefect import get_run_logger, runtime
+from os import environ
+from typing import Any, Optional, TypeVar, cast
+
+from prefect import get_run_logger
 from prefect.blocks.core import Block
+from prefect.runtime import flow_run, task_run
 from prefect_sqlalchemy import AsyncDriver, ConnectionComponents, SqlAlchemyConnector
 
 from housing import data_dir
@@ -20,10 +20,14 @@ class Registry:
     _instance: Optional["Registry"] = None
     _logger: Optional[Logger | LoggerAdapter[Any]] = None
 
-    def __new__(cls: Type["Registry"]) -> "Registry":
+    def __new__(cls) -> "Registry":
         if cls._instance is None:
             cls._instance = super(Registry, cls).__new__(cls)
             cls._logger = get_run_logger()
+
+        if cls._instance is None:
+            raise ValueError('Could not instantiate block Registry')
+
         return cls._instance
 
     @classmethod
@@ -44,11 +48,11 @@ class Registry:
 
     @classmethod
     def _flow_params(cls, key: str) -> Any:
-        return runtime.flow_run.parameters[key]
+        return flow_run.parameters[key]
 
     @classmethod
     def _task_params(cls, key: str) -> Any:
-        return runtime.task_run.parameters[key]
+        return task_run.parameters[key]
 
     @classmethod
     async def gazetteer_ftp(cls) -> GazetteerFTP:

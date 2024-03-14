@@ -18,8 +18,7 @@ class MetadataAwareFileSystem(Block, ABC):
         return get_run_logger()
 
     def fullpath(self, *path_segments: str) -> str:
-        bps = self._base_path_segments
-        return join(sep, *bps, *path_segments)
+        return join(sep, *self._base_path_segments, *path_segments)
 
     @abstractmethod
     async def read_path(self, *path_segments: str) -> bytes:
@@ -37,8 +36,7 @@ class MetadataAwareFileSystem(Block, ABC):
     def size(self, *path_segments: str) -> int | None:
         pass
 
-    @abstractmethod
     @cached_property
-    @computed_field
+    @abstractmethod
     def _base_path_segments(self) -> list[str]:
         pass
