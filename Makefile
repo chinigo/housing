@@ -74,7 +74,7 @@ setup_python: install_python upgrade_pip install_pipenv install_dependencies
 
 .PHONY: install_dependencies
 install_dependencies:
-	pipenv install
+	pipenv install --dev
 
 .PHONY: install_pipenv
 install_pipenv:
