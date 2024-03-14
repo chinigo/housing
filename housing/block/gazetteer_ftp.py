@@ -12,7 +12,7 @@ class GazetteerFTP(CensusFTP):
         example=2023,
     )
 
-    @computed_field
+    @computed_field # type: ignore[misc]
     @cached_property
     def _base_path_segments(self) -> list[str]:
         return ['geo', 'docs', 'maps-data', 'data', 'gazetteer', f'{self.gazetteer_year}_Gazetteer']

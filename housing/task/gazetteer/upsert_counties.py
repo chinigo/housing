@@ -7,14 +7,15 @@ from sqlalchemy.dialects.postgresql import insert
 
 from housing.block import Registry
 from housing.model.gazetteer import County
-from housing.task.helper import CensusDataFile, session_from_block
+from housing.result import CensusDataFile
+from housing.task.helper import session_from_block
 
 
 @task(name='Upsert Gazetteer county data', persist_result=True)
-async def upsert_counties(counties_file: CensusDataFile, gazetteer_year: int):
+async def upsert_counties(counties_file: CensusDataFile, gazetteer_year: int) -> None:
     logger = get_run_logger()
-    source = await Registry().gazetteer_local
-    housing_db = await Registry().housing_database
+    source = await Registry().gazetteer_local()
+    housing_db = await Registry().housing_database()
 
     source_content = await source.read_path(counties_file.path)
 

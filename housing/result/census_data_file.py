@@ -25,7 +25,7 @@ class CensusDataFile(BaseModel):
 
     @classmethod
     def from_block(cls: Type[T], block: MetadataAwareFileSystem, *path_segments: str) -> T:
-        return CensusDataFile(
+        return cls(
             path=join(*path_segments),
             mtime=block.mtime(*path_segments),
             size=block.size(*path_segments))

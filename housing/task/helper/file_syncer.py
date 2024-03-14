@@ -1,11 +1,7 @@
-from typing import TypeVar
-
 from prefect import get_run_logger
 
 from housing.block.metadata_aware_filesystem import MetadataAwareFileSystem
-from housing.task.helper import CensusDataFile
-
-T = TypeVar('T', bound='FileSyncer')
+from housing.result import CensusDataFile
 
 
 class FileSyncer:
@@ -14,7 +10,7 @@ class FileSyncer:
         self.destination_fs = destination_fs
         self._logger = get_run_logger()
 
-    async def sync(self, *path_segments: str):
+    async def sync(self, *path_segments: str) -> CensusDataFile:
         source_file = CensusDataFile.from_block(self.source_fs, *path_segments)
         destination_file = CensusDataFile.from_block(self.destination_fs, *path_segments)
 
@@ -26,10 +22,16 @@ class FileSyncer:
 
         return destination_file
 
-    def _needs_update(self, source_file: CensusDataFile, destination_file: CensusDataFile, *path_segments: str):
+    def _needs_update(self, source_file: CensusDataFile, destination_file: CensusDataFile, *path_segments: str) -> bool:
         if destination_file.size is None or destination_file.mtime is None:
             self._logger.info(
                 f'Destination file does not exist at {self.destination_fs.fullpath(*path_segments)}. Copying.')
+            return True
+
+        if source_file.mtime is None:
+            self._logger.info(
+                f'Source file does not define a modification time at {self.source_fs.fullpath(*path_segments)}. Copying.'
+            )
             return True
 
         if destination_file.size != source_file.size:

@@ -15,7 +15,12 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option('sqlalchemy.url', os.environ.get('HOUSING_DB_CONNECTION_URL'))
+housing_db_url = os.environ.get('HOUSING_DB_CONNECTION_URL')
+
+if housing_db_url is None:
+    raise ValueError('Must provide HOUSING_DB_CONNECTION_URL environment variable')
+
+config.set_main_option('sqlalchemy.url', housing_db_url)
 
 
 def do_run_migrations(connection: Connection) -> None:

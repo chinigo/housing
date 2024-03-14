@@ -12,7 +12,7 @@ class TigerFTP(CensusFTP):
         example=2023,
     )
 
-    @computed_field
+    @computed_field # type: ignore[misc]
     @cached_property
     def _base_path_segments(self) -> list[str]:
         return ['geo', 'tiger', f'TIGER{self.tiger_year}']

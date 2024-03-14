@@ -2,6 +2,7 @@ import re
 from abc import ABC
 from datetime import datetime
 from functools import cached_property
+from typing import Any, cast
 
 from fsspec.implementations.ftp import FTPFileSystem
 from pydantic import computed_field
@@ -24,7 +25,7 @@ class CensusFTP(MetadataAwareFileSystem, ABC):
 
         self._logger.debug(f'Downloaded {len(contents)} bytes.')
 
-        return contents
+        return cast(bytes, contents)
 
     async def write_path(self, content: bytes, *path_segments: str) -> None:
         raise NotImplementedError('Cannot write to Census.gov FTP server')
@@ -46,12 +47,12 @@ class CensusFTP(MetadataAwareFileSystem, ABC):
 
         return int(response)
 
-    @computed_field
+    @computed_field # type: ignore[misc]
     @cached_property
     def _filesystem(self) -> FTPFileSystem:
         return FTPFileSystem(host=self.host_name)
 
-    def _run_command(self, cmd) -> str | None:
+    def _run_command(self, cmd: str) -> str | None | Any:
         self._logger.debug(f'Running command on {self.host_name}: {cmd}')
         try:
             resp = self._filesystem.ftp.sendcmd(cmd)

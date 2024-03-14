@@ -1,23 +1,25 @@
 from io import BytesIO
+from typing import Any, Hashable
 from zipfile import ZipFile
 
-from numpy import array_split
+from numpy import array, array_split
 from pandas import read_csv
 from prefect import get_run_logger, task
 from sqlalchemy.dialects.postgresql import insert
 
 from housing.block import Registry
 from housing.model.gazetteer import Subdivision
-from housing.task.helper import CensusDataFile, session_from_block
+from housing.result import CensusDataFile
+from housing.task.helper import session_from_block
 
 INSERT_CHUNK_SIZE = 1_000
 
 
 @task(name='Upsert Gazetteer county subdivisions data', persist_result=True)
-async def upsert_county_subdivisions(subdivisions_file: CensusDataFile, gazetteer_year: int):
+async def upsert_county_subdivisions(subdivisions_file: CensusDataFile, gazetteer_year: int) -> None:
     logger = get_run_logger()
-    source = await Registry().gazetteer_local
-    housing_db = await Registry().housing_database
+    source = await Registry().gazetteer_local()
+    housing_db = await Registry().housing_database()
 
     source_content = await source.read_path(subdivisions_file.path)
 
@@ -25,7 +27,7 @@ async def upsert_county_subdivisions(subdivisions_file: CensusDataFile, gazettee
         with zf.open(f'{gazetteer_year}_Gaz_cousubs_national.txt') as unzipped_content:
             df = read_csv(unzipped_content, delimiter='\t', dtype={'GEOID': str})
 
-    records = (df[
+    records: list[dict[Hashable, Any]] = (df[
         ['FUNCSTAT', 'GEOID', 'NAME']
     ]).assign(**{
         'state_fips': df['GEOID'].str[0:2],
@@ -36,12 +38,12 @@ async def upsert_county_subdivisions(subdivisions_file: CensusDataFile, gazettee
         'NAME': 'name',
     }).to_dict('records')
 
-    chunks = array_split(records, len(records) // INSERT_CHUNK_SIZE + 1)
+    chunks = array_split(array(records), len(records) // INSERT_CHUNK_SIZE + 1)
     logger.info(f'Upserting {len(records)} county subdivision records in batches of {INSERT_CHUNK_SIZE}')
 
     async with session_from_block(housing_db) as sess:
         for idx, chunk in enumerate(chunks):
-            logger.info(f'Upserting records {idx*INSERT_CHUNK_SIZE} through {(idx+1)*INSERT_CHUNK_SIZE-1}')
+            logger.info(f'Upserting records {idx * INSERT_CHUNK_SIZE} through {(idx + 1) * INSERT_CHUNK_SIZE - 1}')
             await sess.execute(
                 insert(Subdivision)
                 .values(chunk.tolist())

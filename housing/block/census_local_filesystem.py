@@ -2,6 +2,7 @@ from datetime import datetime
 from functools import cached_property
 from os import sep
 from os.path import normpath
+from typing import cast
 
 from fsspec.implementations.local import LocalFileSystem
 from pydantic import computed_field
@@ -17,7 +18,7 @@ class CensusLocalFileSystem(MetadataAwareFileSystem):
     )
 
     async def read_path(self, *path_segments: str) -> bytes:
-        return self._filesystem.read_bytes(self.fullpath(*path_segments))
+        return cast(bytes, self._filesystem.read_bytes(self.fullpath(*path_segments)))
 
     async def write_path(self, content: bytes, *path_segments: str) -> None:
         p = self.fullpath(*path_segments)
@@ -27,22 +28,22 @@ class CensusLocalFileSystem(MetadataAwareFileSystem):
 
     def size(self, *path_segments: str) -> int | None:
         try:
-            return self._filesystem.size(self.fullpath(*path_segments))
+            return cast(int | None, self._filesystem.size(self.fullpath(*path_segments)))
         except FileNotFoundError:
             return None
 
     def mtime(self, *path_segments: str) -> datetime | None:
         try:
-            return self._filesystem.modified(self.fullpath(*path_segments))
+            return cast(datetime | None, self._filesystem.modified(self.fullpath(*path_segments)))
         except FileNotFoundError:
             return None
 
-    @computed_field
+    @computed_field # type: ignore[misc]
     @cached_property
     def _base_path_segments(self) -> list[str]:
         return normpath(self.basepath).split(sep)
 
-    @computed_field
+    @computed_field # type: ignore[misc]
     @cached_property
     def _filesystem(self) -> LocalFileSystem:
         return LocalFileSystem(auto_mkdir=True)
