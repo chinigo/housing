@@ -1,26 +1,24 @@
-from prefect import get_run_logger, task
-
 from housing.block import CensusLocalFileSystem, GazetteerFTP, Registry
-from housing.result import CensusDataFile
 from housing.task import DownloadTask
-from housing.task.helper import FileSyncer
 
 
-class DownloadGazetteerCounties(DownloadTask[GazetteerFTP]):
+class DownloadCounties(DownloadTask[GazetteerFTP, CensusLocalFileSystem]):
+    gazetteer_year: int
+
+    def __init__(self, gazetteer_year: int):
+        super().__init__()
+        self.gazetteer_year = gazetteer_year
+
+    @property
+    def title(self) -> str:
+        return 'Gazetteer county definitions'
+
+    @property
+    def path_segments(self) -> list[list[str]]:
+        return [[f'{self.gazetteer_year}_Gaz_counties_national.zip']]
+
     async def source_block(self) -> GazetteerFTP:
         return await Registry().gazetteer_ftp()
 
     async def destination_block(self) -> CensusLocalFileSystem:
         return await Registry.gazetteer_local()
-
-    @property
-    def path_segments(self) -> list[list[str]]:
-        return []
-
-
-@task(name='Download Gazetteer county data', persist_result=True)
-async def download_counties(gazetteer_year: int) -> CensusDataFile:
-    syncer = FileSyncer(await Registry().gazetteer_ftp(), await Registry().gazetteer_local())
-
-    get_run_logger().info(f'Downloading Gazetteer county definitions')
-    return await syncer.sync(f'{gazetteer_year}_Gaz_counties_national.zip')
