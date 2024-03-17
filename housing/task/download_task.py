@@ -20,13 +20,11 @@ class DownloadTask(Generic[S, D], ABC):
 
     @property
     @abstractmethod
-    def title(self) -> str:
-        pass
+    def title(self) -> str: pass
 
     @property
     @abstractmethod
-    def path_segments(self) -> list[list[str]]:
-        pass
+    def path_segments(self) -> list[list[str]]: pass
 
     @abstractmethod
     async def source_block(self) -> S: pass

@@ -1,5 +1,13 @@
+from prefect import task
+
 from housing.block import CensusLocalFileSystem, GazetteerFTP, Registry
+from housing.result.census_data_file import CensusDataFile
 from housing.task import DownloadTask
+
+
+@task(name='Download Gazetteer county data', persist_result=True)
+async def download_counties(gazetteer_year: int) -> CensusDataFile:
+    return (await DownloadCounties(gazetteer_year).sync())[0]
 
 
 class DownloadCounties(DownloadTask[GazetteerFTP, CensusLocalFileSystem]):
