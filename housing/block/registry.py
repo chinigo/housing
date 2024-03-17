@@ -4,6 +4,7 @@ from typing import Any, Optional, TypeVar, cast
 
 from prefect import get_run_logger
 from prefect.blocks.core import Block
+from prefect.exceptions import ObjectAlreadyExists
 from prefect.runtime import flow_run, task_run
 from prefect_sqlalchemy import AsyncDriver, ConnectionComponents, SqlAlchemyConnector
 
@@ -41,10 +42,12 @@ class Registry:
         except ValueError as e:
             cls._logger.debug(str(e))
             cls._logger.info(f'Creating {block.__class__.__name__} block {block_name}')
+            try:
+                await block.save(name=block_name)
+            except ValueError:
+                cls._logger.debug(f'Failed to create block. Perhaps it was created on another thread.')
 
-            await block.save(name=block_name)
-
-            return block
+        return block
 
     @classmethod
     def _flow_params(cls, key: str) -> Any:
