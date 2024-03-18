@@ -10,6 +10,5 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 createdb "${_db_database}" 2>/dev/null || true
 
-_run_psql_cmd "CREATE SCHEMA IF NOT EXISTS data" "${_db_database};"
-_run_psql_cmd "CREATE USER ${_db_username} WITH ENCRYPTED PASSWORD '${_db_password}';"
-_run_psql_cmd "GRANT ALL PRIVILEGES ON DATABASE ${_db_database} TO ${_db_username};"
+_run_psql_cmd "CREATE USER ${_db_username} WITH ENCRYPTED PASSWORD '${_db_password}';" "${_db_database}"
+_run_psql_cmd "GRANT ALL PRIVILEGES ON DATABASE ${_db_database} TO ${_db_username};" "${_db_database}"

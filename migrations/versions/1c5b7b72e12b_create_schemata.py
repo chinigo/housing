@@ -8,6 +8,7 @@ Create Date: 2024-03-06 15:57:18.039298
 from typing import Sequence, Union
 
 from alembic import op
+from sqlalchemy.inspection import inspect
 
 
 # revision identifiers, used by Alembic.
@@ -20,7 +21,6 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     op.execute('CREATE SCHEMA gz')
     op.execute('CREATE SCHEMA tiger')
-
 
 def downgrade() -> None:
     op.execute('DROP SCHEMA IF EXISTS gz')

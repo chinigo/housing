@@ -3,7 +3,7 @@ from typing import Any, Hashable
 from zipfile import ZipFile
 
 from pandas import DataFrame, read_csv
-from prefect import get_run_logger, task
+from prefect import task
 from sqlalchemy.dialects.postgresql import insert
 
 from housing.block import Registry

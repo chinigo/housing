@@ -5,11 +5,15 @@ name = "pypi"
 
 [packages]
 alembic = "~=1.13"
+pyogrio = "~=0.7"
+geoalchemy2 = "~=0.14"
+geopandas = "~=0.14"
 httpx = "~=0.27"
 numpy = "~=1.26"
 pandas = "~=2.2"
 prefect = "~=2.16"
 prefect_sqlalchemy = "~=0.4"
+shapely = "~=2.0"
 sqlalchemy = "~=2.0"
 
 [dev-packages]

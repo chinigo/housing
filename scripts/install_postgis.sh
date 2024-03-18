@@ -8,4 +8,4 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 . ${SCRIPT_DIR}/_run_psql_cmd.sh
 
-_run_psql_cmd "CREATE EXTENSION IF NOT EXISTS postgis" "${_db_database};"
+_run_psql_cmd "CREATE EXTENSION IF NOT EXISTS postgis" "${_db_database}"

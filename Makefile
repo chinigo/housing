@@ -27,7 +27,7 @@ purge_databases: purge_housing_database purge_prefect_database
 .PHONY: create_housing_database
 create_housing_database:
 	_db_database=${HOUSING_DB_DATABASE} _db_host=${HOUSING_DB_HOST} _db_password=${HOUSING_DB_PASSWORD} _db_port=${HOUSING_DB_PORT} _db_username=${HOUSING_DB_USERNAME} ./scripts/create_database.sh
-	_db_database=${PREFECT_DB_DATABASE} _db_host=${PREFECT_DB_HOST} _db_port=${PREFECT_DB_PORT} ./scripts/install_postgis.sh
+	_db_database=${HOUSING_DB_DATABASE} _db_host=${HOUSING_DB_HOST} _db_port=${HOUSING_DB_PORT} ./scripts/install_postgis.sh
 
 .PHONY: create_prefect_database
 create_prefect_database:

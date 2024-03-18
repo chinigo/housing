@@ -1,5 +1,3 @@
-from asyncio import gather
-
 from prefect import flow
 
 from housing.task.gazetteer import *
@@ -11,7 +9,8 @@ async def download_gazetteer(gazetteer_year: int) -> None:
 
     downloaded_states = download_states.submit()
     downloaded_counties = download_counties.submit(gazetteer_year)
-    downloaded_county_subdivisions = download_county_subdivisions.submit(gazetteer_year)
+    downloaded_county_subdivisions = download_county_subdivisions.submit(
+        gazetteer_year)
 
     upserted_states = upsert_states.submit(await downloaded_states)
     upserted_counties = upsert_counties.submit(
@@ -19,9 +18,7 @@ async def download_gazetteer(gazetteer_year: int) -> None:
         wait_for=[await upserted_states]
     )
 
-    upserted_county_subdivisions = upsert_county_subdivisions.submit(
+    await upsert_county_subdivisions.submit(
         await downloaded_county_subdivisions, gazetteer_year,
         wait_for=[await upserted_counties, await functional_statuses]
     )
-
-    gather(upserted_states, upserted_counties, upserted_county_subdivisions)

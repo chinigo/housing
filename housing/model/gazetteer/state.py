@@ -7,6 +7,7 @@ from housing.model import Base
 
 if TYPE_CHECKING:
     from housing.model.gazetteer import County, Subdivision
+    from housing.model.tiger import State as TigerState
 
 
 class State(Base):
@@ -19,3 +20,4 @@ class State(Base):
 
     counties: Mapped[List['County']] = relationship(back_populates='state')
     subdivisions: Mapped[List['Subdivision']] = relationship(back_populates='state')
+    tiger_state: Mapped['TigerState'] = relationship(back_populates='gazetteer_state')
