@@ -13,12 +13,14 @@ numpy = "~=1.26"
 pandas = "~=2.2"
 prefect = "~=2.16"
 prefect_sqlalchemy = "~=0.4"
+pyproj = "~=3.6"
 shapely = "~=2.0"
 sqlalchemy = "~=2.0"
 
 [dev-packages]
-pandas-stubs = '~=2.2'
-pyright = '~=1.1'
+autopep8 = "~=2.1"
+pandas-stubs = "~=2.2"
+pyright = "~=1.1"
 pytest = "~=8.0"
 
 [requires]

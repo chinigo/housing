@@ -21,6 +21,6 @@ class Subdivision(Base):
     name: Mapped[str] = mapped_column(index=True, nullable=False, unique=False)
     status_code: Mapped[str] = mapped_column(ForeignKey('gz.functional_statuses.code'))
 
-    county: Mapped['County'] = relationship(back_populates='subdivisions', foreign_keys=[county_fips])
-    state: Mapped['State'] = relationship(back_populates='subdivisions', foreign_keys=[state_fips])
-    status: Mapped['FunctionalStatus'] = relationship(foreign_keys=[status_code])
+    # county: Mapped['County'] = relationship(back_populates='subdivisions', foreign_keys=[county_fips])
+    # state: Mapped['State'] = relationship(back_populates='subdivisions', foreign_keys=[state_fips])
+    # status: Mapped['FunctionalStatus'] = relationship(foreign_keys=[status_code])

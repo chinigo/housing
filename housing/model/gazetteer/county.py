@@ -18,5 +18,5 @@ class County(Base):
     state_fips: Mapped[str] = mapped_column(ForeignKey('gz.states.fips'))
     name: Mapped[str] = mapped_column(index=True, nullable=False, unique=False)
 
-    state: Mapped['State'] = relationship(back_populates='counties', foreign_keys=[state_fips])
-    subdivisions: Mapped[List['Subdivision']] = relationship(back_populates='county')
+    # state: Mapped['State'] = relationship(back_populates='counties', foreign_keys=[state_fips])
+    # subdivisions: Mapped[List['Subdivision']] = relationship(back_populates='county')

@@ -1,4 +1,5 @@
 
+from asyncio import gather
 from prefect import flow
 from sqlalchemy import select
 
@@ -6,7 +7,8 @@ from housing import AreaSpecifier
 from housing.block import Registry
 from housing.model.gazetteer import State
 from housing.task.helper import session_from_block
-from housing.task.tiger import download_states, upsert_states
+from housing.task.tiger import download_counties, download_county_subdivisions, download_states, upsert_states
+from housing.task.tiger.download_coastline import download_coastline
 
 
 async def resolve_state_fips_codes(area_specifier: AreaSpecifier) -> list[str]:
@@ -28,5 +30,6 @@ async def download_tiger(tiger_year: int, area_specifier: AreaSpecifier) -> None
     # ]
     states_file = download_states.submit(tiger_year)
 
-    await upsert_states.submit(await states_file, tiger_year)
+    states = upsert_states.submit(await states_file, tiger_year)
+    await states
     # await gather(coastlines, counties, *county_subdivisions, states)
