@@ -10,33 +10,33 @@ from sqlalchemy.dialects.postgresql import insert
 
 from housing.block import Registry
 from housing.model import PROJECT_CRS
-from housing.model.tiger import State as TigerState
+from housing.model.tiger import County
 from housing.result.census_data_file import CensusDataFile
 from housing.task.etl_task import ETLTask
 from housing.task.helper import session_from_block
 
 
-@task(name='Upsert TIGER state boundaries', persist_result=True)
-async def upsert_states(states_file: CensusDataFile, tiger_year: int) -> None:
-    return await UpsertStates(states_file, tiger_year).run()
+@task(name='Upsert TIGER county boundaries', persist_result=True)
+async def upsert_counties(counties_file: CensusDataFile, tiger_year: int) -> None:
+    return await UpsertCounties(counties_file, tiger_year).run()
 
 
-class UpsertStates(ETLTask[GeoDataFrame, list[dict[Hashable, Any]], None]):
-    states_file: CensusDataFile
+class UpsertCounties(ETLTask[GeoDataFrame, list[dict[Hashable, Any]], None]):
+    counties_file: CensusDataFile
     tiger_year: int
 
-    def __init__(self, states_file: CensusDataFile, tiger_year: int):
+    def __init__(self, counties_file: CensusDataFile, tiger_year: int):
         super().__init__()
-        self.states_file = states_file
+        self.counties_file = counties_file
         self.tiger_year = tiger_year
 
     @property
     def title(self) -> str:
-        return f'TIGER state boundaries for {self.tiger_year}'
+        return f'TIGER county boundaries for {self.tiger_year}'
 
     async def _extract(self) -> GeoDataFrame:
         source = await Registry().tiger_local()
-        source_content = await source.read_path(self.states_file.path)
+        source_content = await source.read_path(self.counties_file.path)
 
         extracted = read_file(BytesIO(source_content))
         if isinstance(extracted, GeoDataFrame):
@@ -47,22 +47,23 @@ class UpsertStates(ETLTask[GeoDataFrame, list[dict[Hashable, Any]], None]):
     async def _transform(self, extracted: GeoDataFrame) -> list[dict[Hashable, Any]]:
         return cast(DataFrame, extracted.to_crs(PROJECT_CRS))[
             ['GEOID', 'geometry']
-        ].assign(
-            geom=lambda x: x.geometry.map(wkt.dumps)
-        ).rename(
+        ].rename(
             columns={'GEOID': 'fips'}
+        ).assign(
+            geom=lambda x: x.geometry.map(wkt.dumps),
+            state_fips=lambda x: x.fips.str[0:2],
         )[
-            ['fips', 'geom']
+            ['fips', 'state_fips', 'geom']
         ].to_dict('records')
 
     async def _load(self, transformed: list[dict[Hashable, Any]]) -> None:
         async with session_from_block(await Registry().housing_database()) as session:
-            result = await session.execute(
-                insert(TigerState)
+            await session.execute(
+                insert(County)
                 .values(transformed)
                 .on_conflict_do_update(
-                    index_elements=[TigerState.fips],
-                    set_=dict(geom=TigerState.geom)
+                    index_elements=[County.fips],
+                    set_=dict(geom=County.geom, state_fips=County.state_fips)
                 )
             )
 

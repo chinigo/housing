@@ -42,7 +42,8 @@ class UpsertCounties(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
         return extracted[
             ['GEOID', 'NAME']
         ].assign(
-            **{'state_fips': extracted['GEOID'].str[0:2]}
+            state_fips=lambda x: x['GEOID'].str[0:2]
+            # **{'state_fips': extracted['GEOID'].str[0:2]}
         ).rename(columns={
             'GEOID': 'fips',
             'NAME': 'name',

@@ -4,11 +4,13 @@ from housing.task.tiger.download_county_subdivisions import \
     download_county_subdivisions
 from housing.task.tiger.download_states import download_states
 from housing.task.tiger.upsert_states import upsert_states
+from housing.task.tiger.upsert_counties import upsert_counties
 
 __all__ = [
   'download_coastline',
   'download_counties',
   'download_county_subdivisions',
   'download_states',
+  'upsert_counties',
   'upsert_states',
 ]
