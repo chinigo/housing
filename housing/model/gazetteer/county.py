@@ -7,7 +7,10 @@ from sqlalchemy.types import String
 from housing.model import Base
 
 if TYPE_CHECKING:
-    from housing.model.gazetteer import State, Subdivision
+    import housing.model.gazetteer.state
+    import housing.model.gazetteer.subdivision
+    import housing.model.tiger.county
+    import housing.model.tiger.subdivision
 
 
 class County(Base):
@@ -18,5 +21,17 @@ class County(Base):
     state_fips: Mapped[str] = mapped_column(ForeignKey('gz.states.fips'))
     name: Mapped[str] = mapped_column(index=True, nullable=False, unique=False)
 
-    # state: Mapped['State'] = relationship(back_populates='counties', foreign_keys=[state_fips])
-    # subdivisions: Mapped[List['Subdivision']] = relationship(back_populates='county')
+    state: Mapped['housing.model.gazetteer.state.State'] = relationship(
+        back_populates='counties',
+        foreign_keys=[state_fips]
+    )
+    subdivisions: Mapped['housing.model.gazetteer.subdivision.Subdivision'] = relationship(
+        back_populates='county'
+    )
+
+    tiger_county: Mapped['housing.model.tiger.county.County'] = relationship(
+        back_populates='gazetteer_county'
+    )
+    tiger_subdivisions: Mapped[List['housing.model.tiger.subdivision.Subdivision']] = relationship(
+        back_populates='gazetteer_county'
+    )
