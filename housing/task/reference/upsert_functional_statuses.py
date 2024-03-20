@@ -6,19 +6,20 @@ from prefect import task
 from sqlalchemy.dialects.postgresql import insert
 
 from housing.block import Registry
-from housing.model.gazetteer import FunctionalStatus
+from housing.model.reference import FunctionalStatus
 from housing.task.etl_task import ETLTask
 from housing.task.helper import session_from_block
 
 
-@task(name='Upsert Gazetteer functional status definitions', persist_result=True)
+@task(name='Upsert TIGER functional status definitions', persist_result=True)
 async def upsert_functional_statuses() -> None:
     return await UpsertFunctionalStatuses().run()
 
 
 class UpsertFunctionalStatuses(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
     @property
-    def title(self) -> str: return 'Functional status definitions'
+    def title(self) -> str:
+        return 'TIGER Functional status definitions'
 
     async def _extract(self) -> DataFrame:
         local_data = await Registry().local_data()

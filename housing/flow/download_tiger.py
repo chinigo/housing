@@ -5,7 +5,7 @@ from sqlalchemy import select
 
 from housing import AreaSpecifier
 from housing.block import Registry
-from housing.model.gazetteer import State
+from housing.model.reference import State
 from housing.task.helper import session_from_block
 from housing.task.tiger import download_counties, download_county_subdivisions, download_states, upsert_states, upsert_counties
 

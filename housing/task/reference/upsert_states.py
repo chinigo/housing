@@ -6,13 +6,13 @@ from prefect import task
 from sqlalchemy.dialects.postgresql import insert
 
 from housing.block import Registry
-from housing.model.gazetteer.state import State
+from housing.model.reference.state import State
 from housing.result.census_data_file import CensusDataFile
 from housing.task.etl_task import ETLTask
 from housing.task.helper import session_from_block
 
 
-@task(name='Upsert Gazetteer state definitions', persist_result=True)
+@task(name='Upsert TIGER state definitions', persist_result=True)
 async def upsert_states(states_file: CensusDataFile) -> None:
     return await UpsertStates(states_file).run()
 
@@ -25,7 +25,8 @@ class UpsertStates(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
         self.states_file = states_file
 
     @property
-    def title(self) -> str: return 'Census state definitions'
+    def title(self) -> str:
+        return 'TIGER state definitions'
 
     async def _extract(self) -> DataFrame:
         source = await Registry().reference_local()
@@ -36,7 +37,11 @@ class UpsertStates(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
         )
 
     async def _transform(self, extracted: DataFrame) -> list[dict[Hashable, Any]]:
-        return extracted[['STATE', 'STATEFP', 'STATE_NAME']].rename(columns={
+        return extracted[[
+            'STATE',
+            'STATEFP',
+            'STATE_NAME'
+        ]].rename(columns={
             'STATE': 'postal_code',
             'STATEFP': 'fips',
             'STATE_NAME': 'name',

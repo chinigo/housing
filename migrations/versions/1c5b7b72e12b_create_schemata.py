@@ -19,9 +19,9 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    op.execute('CREATE SCHEMA gz')
+    op.execute('CREATE SCHEMA ref')
     op.execute('CREATE SCHEMA tiger')
 
 def downgrade() -> None:
-    op.execute('DROP SCHEMA IF EXISTS gz')
+    op.execute('DROP SCHEMA IF EXISTS ref')
     op.execute('DROP SCHEMA IF EXISTS tiger')

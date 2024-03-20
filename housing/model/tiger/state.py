@@ -8,20 +8,20 @@ from sqlalchemy.types import String
 from housing.model import PROJECT_SRID, Base
 
 if TYPE_CHECKING:
-    import housing.model.gazetteer.state
+    import housing.model.reference.state
 
 
 class State(Base):
     __tablename__ = 'states'
     __table_args__ = {'schema': 'tiger'}
 
-    fips: Mapped[str] = mapped_column(String(2), ForeignKey('gz.states.fips'), primary_key=True)
+    fips: Mapped[str] = mapped_column(String(2), ForeignKey('ref.states.fips'), primary_key=True)
 
     geom: Column[Geometry] = Column(
         Geometry(geometry_type='MULTIPOLYGON', srid=PROJECT_SRID, spatial_index=True, nullable=False)
     )
 
-    gazetteer_state: Mapped['housing.model.gazetteer.state.State'] = relationship(
+    ref_state: Mapped['housing.model.reference.state.State'] = relationship(
         back_populates='tiger_state',
         foreign_keys=[fips],
     )

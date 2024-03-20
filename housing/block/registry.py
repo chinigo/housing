@@ -4,13 +4,11 @@ from typing import Any, Optional, TypeVar, cast
 
 from prefect import get_run_logger
 from prefect.blocks.core import Block
-from prefect.exceptions import ObjectAlreadyExists
 from prefect.runtime import flow_run, task_run
 from prefect_sqlalchemy import AsyncDriver, ConnectionComponents, SqlAlchemyConnector
 
 from housing import data_dir
 from housing.block.census_local_filesystem import CensusLocalFileSystem
-from housing.block.gazetteer_ftp import GazetteerFTP
 from housing.block.reference_ftp import ReferenceFTP
 from housing.block.tiger_ftp import TigerFTP
 
@@ -58,12 +56,6 @@ class Registry:
         return task_run.parameters[key]
 
     @classmethod
-    async def gazetteer_ftp(cls) -> GazetteerFTP:
-        return await cls._load_or_create_block(
-            GazetteerFTP(gazetteer_year=cls._flow_params('gazetteer_year')),
-            f'gazetteer-ftp-{cls._flow_params('gazetteer_year')}')
-
-    @classmethod
     async def housing_database(cls) -> SqlAlchemyConnector:
         return await cls._load_or_create_block(
             SqlAlchemyConnector(
@@ -109,13 +101,4 @@ class Registry:
         return await cls._load_or_create_block(
             CensusLocalFileSystem(basepath=str(data_dir.joinpath(f'tiger-local-{cls._flow_params('tiger_year')}'))),
             f'tiger-local-{cls._flow_params('tiger_year')}',
-        )
-
-    @classmethod
-    async def gazetteer_local(cls) -> CensusLocalFileSystem:
-        return await cls._load_or_create_block(
-            CensusLocalFileSystem(
-                basepath=str(data_dir.joinpath(f'gazetteer-local-{cls._flow_params('gazetteer_year')}'))
-            ),
-            f'gazetteer-local-{cls._flow_params('gazetteer_year')}',
         )

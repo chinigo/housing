@@ -8,32 +8,32 @@ from sqlalchemy.types import String
 from housing.model import PROJECT_SRID, Base
 
 if TYPE_CHECKING:
-    import housing.model.gazetteer.county
-    import housing.model.gazetteer.state
-    import housing.model.gazetteer.subdivision
+    import housing.model.reference.county
+    import housing.model.reference.state
+    import housing.model.reference.subdivision
 
 
 class Subdivision(Base):
     __tablename__ = 'subdivisions'
     __table_args__ = {'schema': 'tiger'}
 
-    fips: Mapped[str] = mapped_column(String(10), ForeignKey('gz.subdivisions.fips'), primary_key=True)
-    county_fips: Mapped[str] = mapped_column(String(5), ForeignKey('gz.counties.fips'))
-    state_fips: Mapped[str] = mapped_column(String(2), ForeignKey('gz.states.fips'))
+    fips: Mapped[str] = mapped_column(String(10), ForeignKey('ref.subdivisions.fips'), primary_key=True)
+    county_fips: Mapped[str] = mapped_column(String(5), ForeignKey('ref.counties.fips'))
+    state_fips: Mapped[str] = mapped_column(String(2), ForeignKey('ref.states.fips'))
 
     geom: Column[Geometry] = Column(
         Geometry(geometry_type='MULTIPOLYGON', srid=PROJECT_SRID, spatial_index=True, nullable=False)
     )
 
-    gazetteer_subdivision: Mapped['housing.model.gazetteer.subdivision.Subdivision'] = relationship(
+    ref_subdivision: Mapped['housing.model.reference.subdivision.Subdivision'] = relationship(
         back_populates='tiger_subdivision',
         foreign_keys=[fips],
     )
-    gazetteer_county: Mapped['housing.model.gazetteer.county.County'] = relationship(
+    ref_county: Mapped['housing.model.reference.county.County'] = relationship(
         back_populates='tiger_subdivisions',
         foreign_keys=[county_fips],
     )
-    gazetteer_state: Mapped['housing.model.gazetteer.state.State'] = relationship(
+    ref_state: Mapped['housing.model.reference.state.State'] = relationship(
         back_populates='tiger_subdivisions',
         foreign_keys=[state_fips],
     )

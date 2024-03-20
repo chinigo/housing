@@ -3,7 +3,7 @@ import os
 from logging.config import fileConfig
 
 from housing.model import Base
-from housing.model.gazetteer import *
+from housing.model.reference import *
 from housing.model.tiger import *
 
 from alembic import context
