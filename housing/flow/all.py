@@ -6,7 +6,6 @@ from housing.flow.download_tiger import download_tiger
 
 default_area_specifier: AreaSpecifier = {
         'NY': 'all',
-        'VT': ['Rutland County', 'Bennington County', 'Addison County'],
     }
 
 @flow(name='All', persist_result=True)

@@ -37,7 +37,7 @@ class UpsertCountySubdivisions(ETLTask[DataFrame, list[dict[Hashable, Any]], Non
 
         return read_csv(
             BytesIO(await source.read_path(self.county_subdivisions_file.path)),
-            delimiter='\t',
+            delimiter='|',
             dtype={
                 'COUNTYFP': str,
                 'COUSUBFP': str,
@@ -46,20 +46,20 @@ class UpsertCountySubdivisions(ETLTask[DataFrame, list[dict[Hashable, Any]], Non
         )
 
     async def _transform(self, extracted: DataFrame) -> list[dict[Hashable, Any]]:
-        return extracted[[
-            'COUNTYFP',
-            'COUSUBFP',
-            'COUSUBNAME',
-            'FUNCSTAT',
-            'STATEFP',
-        ]].assign(
-            fips=lambda x: x['STATEFP'] + x['COUNTYFP'] + x['COUSUBFP'],
+        return extracted.assign(
             county_fips=lambda x: x['STATEFP'] + x['COUNTYFP'],
+            fips=lambda x: x['STATEFP'] + x['COUNTYFP'] + x['COUSUBFP'],
         ).rename(columns={
             'COUSUBNAME': 'name',
-            'FUNCSTAT': 'status',
+            'FUNCSTAT': 'status_code',
             'STATEFP': 'state_fips',
-        }).to_dict('records')
+        })[[
+            'county_fips',
+            'fips',
+            'name',
+            'state_fips',
+            'status_code',
+        ]].to_dict('records')
 
     async def _load(self, transformed: list[dict[Hashable, Any]]) -> None:
         chunks = array_split(array(transformed), len(transformed) // INSERT_CHUNK_SIZE + 1)

@@ -12,5 +12,5 @@ async def reference() -> None:
 
 if __name__ == "__main__":
     # root(2023, default_area_specifier)
-    # run(tiger())
-    run(reference())
+    # run(reference())
+    run(tiger())

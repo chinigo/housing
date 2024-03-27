@@ -22,6 +22,7 @@ def upgrade() -> None:
     op.execute('CREATE SCHEMA ref')
     op.execute('CREATE SCHEMA tiger')
 
+
 def downgrade() -> None:
     op.execute('DROP SCHEMA IF EXISTS ref')
     op.execute('DROP SCHEMA IF EXISTS tiger')

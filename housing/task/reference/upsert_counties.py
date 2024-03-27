@@ -1,6 +1,5 @@
 from io import BytesIO
 from typing import Any, Hashable
-from zipfile import ZipFile
 
 from pandas import DataFrame, read_csv
 from prefect import task
@@ -26,7 +25,8 @@ class UpsertCounties(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
         self.counties_file = counties_file
 
     @property
-    def title(self) -> str: return 'TIGER county definitions'
+    def title(self) -> str:
+        return 'TIGER county definitions'
 
     async def _extract(self) -> DataFrame:
         source = await Registry().reference_local()
@@ -40,19 +40,18 @@ class UpsertCounties(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
         )
 
     async def _transform(self, extracted: DataFrame) -> list[dict[Hashable, Any]]:
-        return extracted[[
-            'COUNTYFP',
-            'COUNTYNAME',
-            'FUNCSTAT',
-            'STATEFP',
-        ]].assign(
+        return extracted.assign(
             fips=lambda x: x['STATEFP'] + x['COUNTYFP']
         ).rename(columns={
-            'COUNTYFP': 'fips',
             'COUNTYNAME': 'name',
-            'FUNCSTAT': 'status',
+            'FUNCSTAT': 'status_code',
             'STATEFP': 'state_fips',
-        }).to_dict('records')
+        })[[
+            'fips',
+            'name',
+            'state_fips',
+            'status_code',
+        ]].to_dict('records')
 
     async def _load(self, transformed: list[dict[Hashable, Any]]) -> None:
         async with session_from_block(await Registry().housing_database()) as session:
@@ -64,5 +63,5 @@ class UpsertCounties(ETLTask[DataFrame, list[dict[Hashable, Any]], None]):
                     set_=dict(
                         name=County.name,
                         state_fips=County.state_fips,
-                        status=County.status_code)))
+                        status_code=County.status_code)))
             await session.commit()

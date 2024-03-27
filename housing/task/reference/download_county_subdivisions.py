@@ -17,7 +17,7 @@ class DownloadCountySubdivisions(DownloadTask[ReferenceFTP, CensusLocalFileSyste
 
     @property
     def path_segments(self) -> list[list[str]]:
-        return [['national_cousub2020.txt']]
+        return [['codes2020', 'national_cousub2020.txt']]
 
     async def source_block(self) -> ReferenceFTP:
         return await Registry().reference_ftp()

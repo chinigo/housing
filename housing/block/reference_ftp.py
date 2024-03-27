@@ -9,4 +9,4 @@ class ReferenceFTP(CensusFTP):
     @computed_field # type: ignore[misc]
     @cached_property
     def _base_path_segments(self) -> list[str]:
-        return ['geo', 'docs', 'reference', 'codes2020']
+        return ['geo', 'docs', 'reference']

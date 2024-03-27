@@ -14,4 +14,5 @@ async def session_from_block(db_block: SqlAlchemyConnector) -> AsyncGenerator[As
         raise ValueError('Expected AsyncEngine, got Engine')
 
     async with AsyncSession(engine) as session:
-        yield session
+        with session.no_autoflush:
+            yield session
